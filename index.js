@@ -96,73 +96,106 @@ bot.start((ctx) => {
     return false;
   }
 
-  if (ctx.message.text === "/start idhelp") {
-    ctx.reply(ctx.i18n.t("idhelp"), { parse_mode: "HTML" });
-  } else {
-    // username may be not defined, first_name may be empty
-    const userIdentity = ctx.chat.username || ctx.chat.first_name;
-
-    let comma = "";
-    let username;
-    if (userIdentity) {
-      username = html.escape(userIdentity);
-      comma = ",";
-    } else {
-      username = ctx.i18n.t("human");
+  try {
+    if (ctx.message.text === "/start idhelp") {
+      ctx.reply(ctx.i18n.t("idhelp"), { parse_mode: "HTML" });
+    } else {17
+      // username may be not defined, first_name may be empty
+      const userIdentity = ctx.chat.username || ctx.chat.first_name;
+  
+      let comma = "";
+      let username;17
+      if (userIdentity) {
+        username = html.escape(userIdentity);
+        comma = ",";
+      } else {
+        username = ctx.i18n.t("human");
+      }
+  
+      let msgText = ctx.i18n.t("start", { comma, username });
+  
+      msgText += "\n\n" + treeify.renderTree(ctx.from, ctx.i18n.t("you_header"));
+      ctx.replyWithHTML(msgText);
     }
-
-    let msgText = ctx.i18n.t("start", { comma, username });
-
-    msgText += "\n\n" + treeify.renderTree(ctx.from, ctx.i18n.t("you_header"));
-    ctx.replyWithHTML(msgText);
+  } catch (error) {
+    console.error(error);
   }
 });
 
 bot.help((ctx) => {
-  ctx.reply(ctx.i18n.t("help"), { parse_mode: "HTML" });
+  try {
+    ctx.reply(ctx.i18n.t("help"), { parse_mode: "HTML" });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const treeify = require("./treeify.js");
 
 bot.command("admins", async (ctx) => {
   if (ctx.chat.type === "private" || ctx.chat.type === "channel") {
-    ctx.replyWithHTML(ctx.i18n.t("admin_private_chat"));
+    try {
+      ctx.replyWithHTML(ctx.i18n.t("admin_private_chat"));
+    } catch (e) {
+      console.error(e);
+    }
   } else {
     const adminsStr = await getAdminsString(ctx.chat.id);
-    await ctx.replyWithHTML(ctx.i18n.t("admin_list", { adminsStr }), {
-      disable_web_page_preview: true,
-    });
+    try {
+      await ctx.replyWithHTML(ctx.i18n.t("admin_list", { adminsStr }), {
+        disable_web_page_preview: true,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 });
 
 bot.command("json", (ctx) => {
   if (ctx.message.reply_to_message === undefined) {
-    ctx.replyWithHTML(ctx.i18n.t("json_needs_reply"));
+    try {
+      ctx.replyWithHTML(ctx.i18n.t("json_needs_reply"));
+    } catch (error) {
+      console.error(error);
+      
+    }
   } else {
     const rtm = ctx.message.reply_to_message;
     const jsonStr = html.escape(JSON.stringify(rtm, null, 2));
     if (jsonStr.length > 4096) {
-      ctx.replyWithHTML(ctx.i18n.t("json_too_long"), {
-        disable_web_page_preview: true,
-      });
+      try {
+        ctx.replyWithHTML(ctx.i18n.t("json_too_long"), {
+          disable_web_page_preview: true,
+        });
+      } catch (error) {
+        console.error(error);
+      }
     } else {
-      ctx.replyWithHTML("<code>" + jsonStr + "</code>", {
-        disable_web_page_preview: true,
-      });
+      try {
+        ctx.replyWithHTML("<code>" + jsonStr + "</code>", {
+          disable_web_page_preview: true,
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 });
 
 bot.command("user", (ctx) => {
-  if (ctx.message.reply_to_message === undefined) {
-    ctx.replyWithHTML(ctx.i18n.t("user_needs_reply"));
-  } else {
-    const rtm = ctx.message.reply_to_message;
-
-    rtm.from.created = getAgeString({ message: rtm, i18n: ctx.i18n }, "from");
-    ctx.replyWithHTML(treeify.renderTree(rtm.from, ctx.i18n.t("user_header")), {
-      disable_web_page_preview: true,
-    });
+  try {
+    if (ctx.message.reply_to_message === undefined) {
+      ctx.replyWithHTML(ctx.i18n.t("user_needs_reply"));
+    } else {
+      const rtm = ctx.message.reply_to_message;
+  
+      rtm.from.created = getAgeString({ message: rtm, i18n: ctx.i18n }, "from");
+      ctx.replyWithHTML(treeify.renderTree(rtm.from, ctx.i18n.t("user_header")), {
+        disable_web_page_preview: true,
+      });
+    }
+  } catch (error) {
+    console.error(error);
   }
 });
 
@@ -175,10 +208,14 @@ bot.command("kill_process", async (ctx) => {
 });
 
 bot.on("message", (ctx) => {
-  if (ctx.message.chat.type === "private") {
-    handlePrivateChat(ctx);
-  } else {
-    handleGroupChat(ctx);
+  try {
+    if (ctx.message.chat.type === "private") {
+      handlePrivateChat(ctx);
+    } else {
+      handleGroupChat(ctx);
+    }
+  } catch (error) {
+    console.error(error);
   }
 });
 
