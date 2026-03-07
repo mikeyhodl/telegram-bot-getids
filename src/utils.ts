@@ -1,4 +1,4 @@
-function formatSizeUnits(bytes) {
+export function formatSizeUnits(bytes: number): string {
   if (bytes >= 1073741824) {
     return (bytes / 1073741824).toFixed(2) + " GB";
   } else if (bytes >= 1048576) {
@@ -13,4 +13,3 @@ function formatSizeUnits(bytes) {
     return "0 bytes";
   }
 }
-exports.formatSizeUnits = formatSizeUnits;

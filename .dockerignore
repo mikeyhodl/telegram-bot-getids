@@ -4,3 +4,5 @@ node_modules
 captain-definition
 .gitlab-ci.yml
 LICENSE
+dist
+.git

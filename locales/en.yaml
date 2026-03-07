@@ -1,6 +1,17 @@
 start: "Hello${comma} ${username}! I am a computer program that can chat (also known as a 'bot') and I can tell you something about you and the messages you send me.\n\nTry it out, just forward me some messages ;)\n\n<b>Note from the developers:</b>\nThis bot is no longer actively developed. If you can code, here is the <a href=\"https://github.com/wjclub/telegram-bot-getids\">GitHub repo</a>."
 human: "there human"
-help: "Not implemented yet"
+help: |
+  Send me a forwarded message in a private chat and I will show useful metadata (users, origin chat, media info, hidden links, and more).
+
+  <b>Commands:</b>
+  » /start show intro + your account info
+  » /admins list current chat admins (groups only)
+  » /json reply to a message to get its Bot API JSON
+  » /user reply to a message to inspect that user's info
+
+  For more info on how I estimate the account creation date, send /idhelp
+
+  My source code is available on <a href="https://github.com/wjclub/telegram-bot-getids">GitHub</a>.
 idhelp: |
   <b>Account creation date</b>
 
@@ -10,6 +21,10 @@ idhelp: |
 
   <b>My account creation date is wrong</b>
   Sure. That is why there is a "~" in front of it. It is just a guess and very often the IDs given out at a time differ very much from each other, resulting in a sheer data mess. So just consider the date as some sort of art.
+
+  <b>Can I have that list?</b>
+  Sure, that's the beauty of Open Source: <a href="https://github.com/wjclub/telegram-bot-getids/blob/master/src/ages.json">It is a JSON file on GitHub</a>.
+nosettings: "This bot has no settings."
 older_than: "older than"
 newer_than: "newer than"
 aprox: "~"
@@ -26,7 +41,7 @@ message_header: "📃 Message"
 poll_header: "📊 Poll"
 inline_query_your_info_header: "👤 You"
 inline_query_your_info_text: "Click here to send your info"
-user_hid_account: "This user hid his account information in Telegram's privacy settings, so I can't tell you anything about him."
+user_hid_account: "This user hid his account information in Telegram's privacy settings, so I can't tell you anything about them."
 group_chat_start: |
   GetIDsBot - Get Meta information in Telegram
 
@@ -48,5 +63,6 @@ admin_list: |
 this_chat_header: "This chat"
 user_header: "👤 User"
 admin_private_chat: "A 1-on-1 chat does not have any admins. This command only works in group chats."
-json_needs_reply: "Please reply to a specific message with this command."
+json_needs_reply: "💥 Please reply to a specific message with this command."
+user_needs_reply: "💥 You must reply to a message with this command, otherwise I won't know which user you want information about."
 json_too_long: 'The resulting json of the referenced message is too long to send it here. As referenced <a href="https://core.telegram.org/bots/api#message">here</a>, a message may only contain up to 4096 characters.'

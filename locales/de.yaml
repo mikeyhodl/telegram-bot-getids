@@ -1,6 +1,17 @@
 start: "Hallo${comma} ${username}! Ich bin ein Computerprogramm, das kommunizieren kann (auch bekannt als 'Bot') und jegliche geheimen Informationen über Nachrichten preisgibt, die du an mich weiterleitest.\n\nProbier's aus, leite ein paar Nachrichten an mich weiter ;)\n\n<b>Hinweis der Entwickler:</b>\nDer Bot befindet sich noch im Anfangsstadium der Entwicklung. Einige Sachen wie Hilfetexte fehlen noch. Wenn du programmieren kannst, werfe einen Blick in die <a href=\"https://github.com/wjclub/telegram-bot-getids\">GitHub repo</a>. Wenn du anderweitig behilflich sein willst, melde dich bei @wjclub."
 human: "lieber Mitbürger"
-help: "Hilfe noch nicht verfügbar"
+help: |
+  Sende mir eine weitergeleitete Nachricht im privaten Chat, und ich zeige dir nützliche Metadaten (Benutzer, Ursprungs-Chat, Medieninfos, versteckte Links und mehr).
+
+  <b>Befehle:</b>
+  » /start zeigt die Einleitung + deine Account-Infos
+  » /admins listet die aktuellen Admins dieses Chats auf (nur Gruppen)
+  » /json antworte auf eine Nachricht, um ihr Bot-API-JSON zu erhalten
+  » /user antworte auf eine Nachricht, um Infos zu diesem Benutzer anzuzeigen
+
+  Für mehr Informationen darüber, wie ich das Account-Erstellungsdatum schätze, sende /idhelp
+
+  Mein Quellcode ist auf <a href="https://github.com/wjclub/telegram-bot-getids">GitHub</a> verfügbar.
 idhelp: |
   <b>Erstellungsdatum des Accounts</b>
 
@@ -10,6 +21,10 @@ idhelp: |
 
   <b>Mein Account Erstellungsdatum ist falsch</b>
   Kann sein. Deshalb klatschen wir ein "~" davor. Wir können nur raten und häufig unterscheiden sich die zur Verfügung stehenden IDs gewaltig vom Zeitpunkt der Erstellung, was nur zu einem Datenchaos führen kann. Wenn man's aber als mathematisches Kunststück betrachtet, könnte es auch richtig sein.
+
+  <b>Kann ich diese Liste bekommen?</b>
+  Klar, das ist die Schönheit von Open Source: <a href="https://github.com/wjclub/telegram-bot-getids/blob/master/src/ages.json">Sie ist als JSON-Datei auf GitHub</a> verfügbar.
+nosettings: "Dieser Bot hat keine Einstellungen."
 older_than: "älter als"
 newer_than: "neuer als"
 aprox: "~"
@@ -26,7 +41,7 @@ message_header: "📃 Nachricht"
 poll_header: "📊 Poll"
 inline_query_your_info_header: "👤 Du"
 inline_query_your_info_text: "Klicke hier um deine Info zu sender"
-user_hid_account: "Dieser Benutzer hat seine Accountinformation in den Einstellungen von Telegram verbergen lassen, daher kann ich nichts über ihn herausfinden."
+user_hid_account: "Diese Benutzerin hat ihre Accountinformation in den Einstellungen von Telegram verbergen lassen, daher kann ich nichts über sie herausfinden."
 group_chat_start: |
   GetIDsBot - Meta Informationen in Telegram
 
@@ -40,13 +55,14 @@ group_chat_start: |
   <b>Admins:</b>
   ${adminsStr}
 
-  ℹ️ <i>Befehle sind in Gruppenchats begrenzt. Ohne expliziter Aufforderung werde ich nicht reden.</i>
+  ℹ️ <i>Befehle sind in Gruppenchats begrenzt. Ohne explizite Aufforderung werde ich keine Nachrichten schreiben.</i>
 admin_list: |
   <b>Admins:</b>
 
   ${adminsStr}
 this_chat_header: "Dieser Chat"
-user_header: "👤 Benutzer"
+user_header: "👤 User"
 admin_private_chat: "Ein 1-zu-1 Chat hat keine Admins. Dieser Befehl funktioniert nur in Gruppenchats."
-json_needs_reply: "Um den Befehl nutzen zu können, musst du auf eine spezifische Nachricht antworten."
+json_needs_reply: "💥 Um den Befehl nutzen zu können, musst du auf eine spezifische Nachricht antworten."
+user_needs_reply: "💥 Du musst auf eine Nachricht antworten, sonst weiß ich nicht, über welchen Benutzer ich Informationen anzeigen soll."
 json_too_long: 'Das erzeugte JSON zur bezogenen Nachricht ist zu lang um hier geschickt werden zu können. Laut <a href="https://core.telegram.org/bots/api#message">Telegram</a> dürfen Nachrichten maximal 4096 Zeichen beinhalten.'
