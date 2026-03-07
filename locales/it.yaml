@@ -1,6 +1,5 @@
 start: "Ciao${comma} ${username}! Sono un programma che può chattare (conosciuto anche come 'bot') e posso dirti qualcosa riguardo a te e i messaggi che mi mandi.\n\nProva, basta che mi inoltri un messaggio ;)\n\n<b>Nota dagli sviluppatori:</b>\nQuesta è ancora una versione iniziale del bot. Quindi alcune cose (spiegazioni, etc.) sono ancora mancanti. Se sai programmare, qui c'è il <a href=\"https://github.com/wjclub/telegram-bot-getids\">repository GitHub</a>. Se non sai come programmare, puoi comunque aiutare. Contattaci a @wjclub."
 human: "utente"
-help: "Non ancora implementato"
 idhelp: |
   <b>Data creazione account</b>
 
